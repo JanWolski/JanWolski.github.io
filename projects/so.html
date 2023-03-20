@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<link rel="stylesheet" href="../style.css">		
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../style.css">	
+		<title>Jan Wolski</title>
 	</head>
 
 	<body>
@@ -17,13 +19,15 @@
 				<h1 class="title">Sollaris - the solar system simulator</h1>
 				<div class="description">
 					<p>
-						Have you ever wanted to play god? To be able to create planet systems? Test new possibilities? See what would happen if solar system had two suns? Or if pluton rammed into the earth unimaginable speed? This project was made for that.
-						It allows to set up your own solar system, or work on a ready one, as application uses NASA api to download data about our own solar system, letting you just observe or play with current planet.
+						Project made in C++, allows you to create whole solar system, and experiment with sights you might have never experienced, like systems with two suns. Application also allows to download data about our own solar system from NASA's API, letting you to experiment with current planets.
 						
-						Project was made using C++ with cmake and googletest, integrates with python for easily configurable interfaces and uses curl to connect to api.</p>
+						Project was made using C++, integrates with python for easily configurable interfaces and uses curl to connect to api.</p>
+						<p>Github link: <a href="https://github.com/Jan-Wolski/Solar-System">https://github.com/Jan-Wolski/Solar-System</a></p>
 				</div>
-				<img src="../images/sol1.png" class="side-img">
-				<img src="../images/sol2.png" class="side-img">
+				<div class="side-img">
+					<img src="../images/sol1.png"  srcset="../images/sol1-small.png 395w, ../images/sol1.png 790w" alt="Solar system" class="side-img2">
+					<img src="../images/sol2.png" alt="Solar system"  class="side-img2 hide-mobile">
+				</div>
 			</section>
 		</main>
 	</body>
