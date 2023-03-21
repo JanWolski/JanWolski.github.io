@@ -17,9 +17,55 @@
 
 			<section class="page-content">
 				<h1 class="title">Compiler</h1>
-				<div class="description">
+				<!-- <div class="description"> -->
+				<div>
 					<p>
-						Used to translate between two (pascal like and assembly like) programming languages. Beside simple translation it also included special optimization to translated code.</p>
+						Exercise to create compiler from high, pascal-like programming language to assembly-like language. Beside simple translation huge amount of programming went into optimization of translated code.</p>
+						<p>
+							Flex and Bison were used to generate parser for compiled language:
+							<pre>
+								<code>
+	command : ID ASSIGN expression ';'                        {program.set_val($1);free($1);}
+	| IF condition THEN commands ELSE commands ENDIF  {program.control(Ctrl::IFELSE);}
+	| IF condition THEN commands ENDIF                {program.control(Ctrl::IF);}
+	| WHILE condition DO commands ENDWHILE            {program.control(Ctrl::WHILE);}
+	| REPEAT commands UNTIL condition ';'                 {program.control(Ctrl::UNTIL);}
+	| load_proc_head ';'                                       {;}
+	| READ ID ';'                                         {program.read($2);free($2);}
+	| WRITE value ';'                                     {program.write();}					
+								</code>
+							</pre>
+						</p>
+						<p>
+							As calling procedures is an expensive operation, proper embedding of them to decrease code length and time wasted on calling:
+							<pre>
+								<code>
+for(unsigned int i=0;i&ltprocs_order.size()-1;i++){
+	int inst_count = 0;
+	if(procs_order[i] == "-main"){
+		break;
+	}
+	Procedure &proc = procs[procs_order[i]];
+	for(unsigned int j=0;j&ltproc.insts.size();j++){
+		if(proc.insts[j].inst == Inst::CALL){
+			Proc_call &c = calls[proc.insts[j].val];
+			if(procs[c.proc].embed){
+				inst_count+=procs[c.proc].inst_count;
+			}else{
+				inst_count+=(c.args.size()+1)*2;
+			}
+		}else if(proc.insts[j].inst != Inst::LABEL){
+			inst_count++;
+		}
+	}
+	if(inst_count*proc.calls&lt=inst_count + 1 + (proc.calls*2*(proc.bindings+1))){
+		proc.embed = true;
+	}
+	proc.inst_count = inst_count;
+}										
+								</code>
+							</pre>
+						</p>
 						<p>Github link: <a href="https://github.com/Jan-Wolski/Compiler">https://github.com/Jan-Wolski/Compiler</a></p>
 				</div>
 			</section>

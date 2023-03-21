@@ -10,6 +10,7 @@
 
 @media (prefers-color-scheme: light) {
 	:root{
+		--lighter: #3843da;
 		--light: #3d92d0;
 		--dark: #d5e7f5;
 		--darker: #e2ebf2;
@@ -50,6 +51,7 @@ body{
 .main-nav{
 	background-color: var(--light);
 	display: flex;
+	flex-wrap: wrap;
 	margin-bottom: 0px;
 }
 
@@ -68,6 +70,15 @@ body{
 	background-color: var(--dark);
 }
 
+.page-content{
+	border-style: solid;
+	border-color: var(--dark);
+	background-color: var(--darker);
+	overflow: hidden;
+	margin-top: 0px;
+	padding: 10px;
+}
+
 .list{
 	list-style-type: none;
 	margin: 0;
@@ -84,11 +95,13 @@ body{
 	margin: 10px 0px;
 }
 
-.side-img{
-	max-width: 100%;
+.side-images{
+	margin: auto;
+	max-width: 90%;
+	overflow: hidden;
 }
 
-.side-img2{
+.side-images img{
 	max-width: 100%;
 }
 
@@ -100,13 +113,9 @@ body{
 
 
 @media (min-aspect-ratio: 4/3) {
-	.side-img{
+	.side-images{
 		max-width: 30%;
-		/* max-height: 100%; */
 		float: right;
-	}
-	.side-img2{
-		max-width: 100%;
 	}
 }
 
@@ -117,12 +126,7 @@ body{
 	}
 }
 
-.page-content{
-	border-style: solid;
-	border-color: var(--dark);
-	background-color: var(--darker);
-	overflow: hidden;
-	margin-top: 0px;
-	padding: 10px;
+pre{
+	overflow: auto;
+	background-color: var(--darkest);
 }
-
