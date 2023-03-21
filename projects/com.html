@@ -16,13 +16,15 @@
 			</header>
 
 			<section class="page-content">
-				<h1 class="title">Compiler</h1>
+				<h2 class="title">Compiler</h2>
 				<!-- <div class="description"> -->
 				<div>
 					<p>
-						Exercise to create compiler from high, pascal-like programming language to assembly-like language. Beside simple translation huge amount of programming went into optimization of translated code.</p>
+						Exercise to create compiler from high, pascal-like programming language to assembly-like language. Beside simple translation huge amount of programming went into optimization of translated code.
+					</p>
 						<p>
 							Flex and Bison were used to generate parser for compiled language:
+						</p>
 							<pre>
 								<code>
 	command : ID ASSIGN expression ';'                        {program.set_val($1);free($1);}
@@ -35,18 +37,19 @@
 	| WRITE value ';'                                     {program.write();}					
 								</code>
 							</pre>
-						</p>
+
 						<p>
 							As calling procedures is an expensive operation, proper embedding of them to decrease code length and time wasted on calling:
+						</p>
 							<pre>
 								<code>
-for(unsigned int i=0;i&ltprocs_order.size()-1;i++){
+for(unsigned int i=0;i&lt;procs_order.size()-1;i++){
 	int inst_count = 0;
 	if(procs_order[i] == "-main"){
 		break;
 	}
 	Procedure &proc = procs[procs_order[i]];
-	for(unsigned int j=0;j&ltproc.insts.size();j++){
+	for(unsigned int j=0;j&lt;proc.insts.size();j++){
 		if(proc.insts[j].inst == Inst::CALL){
 			Proc_call &c = calls[proc.insts[j].val];
 			if(procs[c.proc].embed){
@@ -58,14 +61,14 @@ for(unsigned int i=0;i&ltprocs_order.size()-1;i++){
 			inst_count++;
 		}
 	}
-	if(inst_count*proc.calls&lt=inst_count + 1 + (proc.calls*2*(proc.bindings+1))){
+	if(inst_count*proc.calls&lt;=inst_count + 1 + (proc.calls*2*(proc.bindings+1))){
 		proc.embed = true;
 	}
 	proc.inst_count = inst_count;
 }										
 								</code>
 							</pre>
-						</p>
+
 						<p>Github link: <a href="https://github.com/Jan-Wolski/Compiler">https://github.com/Jan-Wolski/Compiler</a></p>
 				</div>
 			</section>
